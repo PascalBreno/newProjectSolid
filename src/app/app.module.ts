@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import {LoginPopupComponent} from './login-popup/login-popup.component';
 import {LoginComponent} from './login/login.component';
@@ -16,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {CommonService} from './card/common.service';
+import {Http, Response, Headers, RequestOptions, HttpModule} from '@angular/http';
 
 
 
@@ -50,11 +51,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    CardComponent,
     AppComponent,
     LoginComponent,
     LoginPopupComponent,
     DashboardComponent,
-    CardComponent,
     RegisterComponent
   ],
   imports: [
@@ -63,9 +64,10 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     NgSelectModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule //required for toastr
+    BrowserAnimationsModule, //required for toastr
+      HttpModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
